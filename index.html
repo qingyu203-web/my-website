@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY PORTFOLIO.</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior: smooth;}
+        body{
+            font-family: 'Times New Roman', serif;
+            background-color: #fcfcfb;
+            color:#1a1a1a;
+            line-height: 1.65;
+        }
+        .fade-in{
+            opacity:0;
+            transform: translateY(22px);
+            transition: 0.7s ease-out;
+        }
+        .fade-in.active{
+            opacity:1;
+            transform: translateY(0);
+        }
+        .container{
+            max-width:1200px;
+            margin:0 auto;
+            padding:0 32px;
+        }
+
+        /* 导航栏 */
+        header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:32px 0;
+            border-bottom:1px solid #e9e9e9;
+        }
+        .logo{
+            font-size:34px;
+            font-weight:700;
+            letter-spacing:0.5px;
+        }
+        nav a{
+            font-family: system-ui, sans-serif;
+            color:#1a1a1a;
+            text-decoration:none;
+            font-size:17px;
+            margin-left:28px;
+            transition: 0.2s;
+        }
+        nav a:hover{color:#777;}
+
+        /* Hero 首页区块 */
+        .hero{
+            padding:120px 0 140px;
+        }
+        .hero-subtitle{
+            font-family: system-ui, sans-serif;
+            color:#888;
+            font-size:18px;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            margin-bottom:24px;
+        }
+        .hero h1{
+            font-size:92px;
+            font-weight:500;
+            line-height:1.05;
+            margin-bottom:32px;
+        }
+        .hero h1 span{
+            color:#999;
+        }
+        .hero p{
+            font-family: system-ui, sans-serif;
+            font-size:22px;
+            color:#666;
+            max-width:760px;
+            line-height:1.7;
+        }
+
+        /* About 区块 */
+        .about{
+            padding:100px 0 120px;
+        }
+        .section-num{
+            font-family: system-ui, sans-serif;
+            color:#888;
+            font-size:17px;
+            letter-spacing:2px;
+            margin-bottom:16px;
+        }
+        .about h2{
+            font-size:72px;
+            font-weight:500;
+            margin-bottom:40px;
+        }
+        .about-text{
+            font-family: system-ui, sans-serif;
+            font-size:21px;
+            color:#666;
+            max-width:820px;
+            display:flex;
+            flex-direction:column;
+            gap:28px;
+        }
+
+        /* Projects区块 - 桌面端三个并排 */
+        .projects{
+            padding:0 0 120px;
+        }
+        .projects h2{
+            font-size:72px;
+            font-weight:500;
+            margin-bottom:48px;
+        }
+        .projects-grid{
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:32px;
+        }
+        /* 卡片链接外层 */
+        .card-link{
+            display:block;
+            text-decoration:none;
+            color:inherit;
+        }
+        .project-card{
+            background:#fff;
+            border:1px solid #eee;
+            overflow:hidden;
+            transition:0.3s ease;
+        }
+        .project-card:hover{
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+        }
+        .card-img{
+            height:220px;
+            background:#f4f4f2;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#999;
+            font-family:system-ui, sans-serif;
+        }
+        .card-img img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+        .card-content{
+            padding:26px;
+        }
+        .project-tags{
+            display:flex;
+            gap:8px;
+            margin-bottom:12px;
+        }
+        .tag{
+            font-family:system-ui, sans-serif;
+            font-size:12px;
+            padding:4px 9px;
+            background:#f3f3f1;
+            color:#666;
+            border-radius:4px;
+        }
+        .card-content h3{
+            font-size:20px;
+            margin-bottom:12px;
+        }
+        .card-content p{
+            font-family:system-ui, sans-serif;
+            color:#666;
+            font-size:15px;
+            margin-bottom:20px;
+        }
+        .card-text-link{
+            font-family:system-ui, sans-serif;
+            color:#222;
+            font-size:15px;
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+        }
+
+        /* Contact 区块 */
+        .contact{
+            padding:100px 0 120px;
+            text-align:center;
+        }
+        .contact h2{
+            font-size:72px;
+            font-weight:500;
+            margin-bottom:32px;
+        }
+        .contact p.desc{
+            font-family:system-ui, sans-serif;
+            font-size:22px;
+            color:#666;
+            margin-bottom:36px;
+        }
+        .contact .email{
+            font-family:system-ui, sans-serif;
+            font-size:26px;
+            color:#111;
+            text-decoration:none;
+            border-bottom:1px solid #111;
+            padding-bottom:4px;
+        }
+        .contact .email:hover{color:#666;}
+
+        /* 页脚 */
+        footer{
+            border-top:1px solid #e9e9e9;
+            padding:32px 0;
+            display:flex;
+            justify-content:space-between;
+            font-family:system-ui, sans-serif;
+            color:#888;
+            font-size:15px;
+        }
+
+        /* 移动端：自动变成一列堆叠 */
+        @media(max-width:900px){
+            .projects-grid{
+                grid-template-columns: 1fr;
+            }
+            header{flex-direction:column;align-items:flex-start;gap:20px;}
+            nav a{margin-left:0;margin-right:20px;}
+            .hero h1{font-size:52px;}
+            .about h2,.projects h2,.contact h2{font-size:46px;}
+            .hero p,.about-text,.contact p.desc{font-size:18px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="fade-in">
+            <div class="logo">MY PORTFOLIO.</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero 首页文字（修改后） -->
+        <section class="hero fade-in" id="home">
+            <div class="hero-subtitle">CREATIVE PORTFOLIO · 2026</div>
+            <h1>Hello,<br>I'm <span>Qingyu</span><br>Chen.</h1>
+            <p>A Digital Media student exploring interactive storytelling, video production and UI design. This portfolio collects my course projects and creative experiments.</p>
+        </section>
+
+        <!-- About 介绍文字（修改后） -->
+        <section class="about fade-in" id="about">
+            <div class="section-num">01 — ABOUT ME</div>
+            <h2>A little about me.</h2>
+            <div class="about-text">
+                <p>I’m a Digital Media student at TU Dublin. My practice focuses on interactive narrative, video making and user interface design.</p>
+                <p>I enjoy building small, functional creative projects, from Twine interactive stories to documentary filming and community-focused design concepts.</p>
+                <p>These three works show my learning process, technical attempts and the way I turn ideas into finished media pieces.</p>
+            </div>
+        </section>
+
+        <!-- Projects 三个卡片同一排 -->
+        <section class="projects fade-in" id="projects">
+            <div class="section-num">02 — SELECTED WORKS</div>
+            <h2>My works.</h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <a href="project1.html" class="card-link">
+                    <div class="project-card fade-in">
+                        <div class="card-img">
+                            <img src="Images/p1-home.png" alt="GREEN Digital Carbon Footprint App">
+                        </div>
+                        <div class="card-content">
+                            <div class="project-tags">
+                                <span class="tag">UI Design</span>
+                                <span class="tag">Mobile App</span>
+                            </div>
+                            <h3>Digital Carbon Footprint App</h3>
+                            <p>A mobile prototype for young users to learn digital carbon emissions and cut online footprint.</p>
+                            <span class="card-text-link">View Case Study →</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Project 2 -->
+                <a href="project2.html" class="card-link">
+                    <div class="project-card fade-in">
+                        <div class="card-img">
+                        <img src="Images/p2-home.png" alt="Interactive Voting Guide Twine">
+                        </div>
+                        <div class="card-content">
+                            <div class="project-tags">
+                                <span class="tag">Interactive Narrative</span>
+                                <span class="tag">Twine</span>
+                            </div>
+                            <h3>Interactive Voting Guide (Twine)</h3>
+                            <p>Nonlinear interactive narrative prototype for first-time voters, developed in Twine SugarCube.</p>
+                            <span class="card-text-link">View Case Study →</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Project 3 -->
+                <a href="project3.html" class="card-link">
+                    <div class="project-card fade-in">
+                        <div class="card-img">
+                        <img src="Images/p3-home.png" alt="Interactive Voting Guide Twine">
+                        </div>
+                        <div class="card-content">
+                            <div class="project-tags">
+                                <span class="tag">Video</span>
+                                <span class="tag">Documentary</span>
+                            </div>
+                            <h3>Documentary & Video Production</h3>
+                            <p>Short documentary project, including storyboarding, camera operation and post-production editing.</p>
+                            <span class="card-text-link">View Case Study →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact 联系文字（修改后） -->
+        <section class="contact fade-in" id="contact">
+            <div class="section-num">03 — GET IN TOUCH</div>
+            <h2>Let's connect.</h2>
+            <p class="desc">Feel free to reach out if you’d like to talk about my work or collaborate.</p>
+            <a class="email" href="mailto:your@email.com">B00170802@myTUDublin.ie</a>
+        </section>
+
+        <footer>
+            <span>© 2026 Qingyu Chen</span>
+            <span>Digital Media Portfolio</span>
+        </footer>
+    </div>
+
+    <script>
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('active');
+                }
+            })
+        },{threshold:0.12});
+        fadeElements.forEach(el=>observer.observe(el));
+    </script>
+</body>
+</html>

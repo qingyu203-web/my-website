@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 03 | MY PORTFOLIO.</title>
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior: smooth;}
+        body{
+            font-family: 'Times New Roman', serif;
+            background-color: #fcfcfb;
+            color:#1a1a1a;
+            line-height: 1.65;
+        }
+        .fade-in{
+            opacity:0;
+            transform: translateY(22px);
+            transition: 0.7s ease-out;
+        }
+        .fade-in.active{
+            opacity:1;
+            transform: translateY(0);
+        }
+        .container{
+            max-width:1200px;
+            margin:0 auto;
+            padding:0 32px;
+        }
+        header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:32px 0;
+            border-bottom:1px solid #e9e9e9;
+        }
+        .logo{
+            font-size:34px;
+            font-weight:700;
+            letter-spacing:0.5px;
+        }
+        nav a{
+            font-family: system-ui, sans-serif;
+            color:#1a1a1a;
+            text-decoration:none;
+            font-size:17px;
+            margin-left:28px;
+            transition: 0.2s;
+        }
+        nav a:hover{color:#777;}
+
+        .project-header{
+            padding:80px 0 60px;
+        }
+        .section-num{
+            font-family: system-ui, sans-serif;
+            color:#888;
+            font-size:17px;
+            letter-spacing:2px;
+            margin-bottom:16px;
+        }
+        .project-header h1{
+            font-size:72px;
+            font-weight:500;
+            line-height:1.1;
+            margin-bottom:24px;
+        }
+        .tags{
+            display:flex;
+            gap:10px;
+            margin-bottom:30px;
+        }
+        .tag{
+            font-family:system-ui, sans-serif;
+            font-size:14px;
+            padding:5px 10px;
+            background:#f3f3f1;
+            color:#666;
+            border-radius:4px;
+        }
+        .project-desc{
+            font-family: system-ui, sans-serif;
+            font-size:21px;
+            color:#666;
+            max-width:820px;
+        }
+
+        .image-block{
+            margin:60px 0;
+        }
+        .image-block img{
+            width:100%;
+            height:auto;
+            display:block;
+            border-radius:2px;
+        }
+        .image-caption{
+            font-family:system-ui, sans-serif;
+            color:#777;
+            font-size:14px;
+            margin-top:12px;
+        }
+
+        .image-row{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:24px;
+            margin:60px 0;
+        }
+        .image-row img{
+            width:100%;
+            height:auto;
+        }
+
+        .text-block{
+            max-width:820px;
+            margin:0 auto 50px 0;
+        }
+        .text-block p{
+            font-family: system-ui, sans-serif;
+            font-size:18px;
+            color:#555;
+            margin-bottom:22px;
+        }
+
+        .back-link{
+            display:inline-block;
+            font-family:system-ui, sans-serif;
+            color:#222;
+            font-size:17px;
+            text-decoration:none;
+            margin:40px 0 80px;
+        }
+        .back-link:hover{color:#777;}
+
+        footer{
+            border-top:1px solid #e9e9e9;
+            padding:32px 0;
+            display:flex;
+            justify-content:space-between;
+            font-family:system-ui, sans-serif;
+            color:#888;
+            font-size:15px;
+        }
+
+        @media(max-width:900px){
+            .image-row{
+                grid-template-columns:1fr;
+            }
+            header{flex-direction:column;align-items:flex-start;gap:20px;}
+            nav a{margin-left:0;margin-right:20px;}
+            .project-header h1{font-size:46px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="fade-in">
+            <div class="logo">MY PORTFOLIO.</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section class="project-header fade-in">
+            <div class="section-num">PROJECT 03</div>
+            <h1>Documentary & Video Production</h1>
+            <div class="tags">
+                <span class="tag">Documentary</span>
+                <span class="tag">Post-production</span>
+            </div>
+            <p class="project-desc">A short observational documentary interviewing community influencers, exploring how individuals inspire others and create positive change at a local level.</p>
+        </section>
+
+        <div class="image-block fade-in">
+            <img src="Images/p3-home.png" alt="Documentary still">
+            <div class="image-caption">Documentary cover</div>
+        </div>
+
+        <div class="text-block fade-in">
+            <p>This documentary project focuses on interviewing community influencers to understand how their actions, ideas and leadership shape local communities. Through face-to-face interviews and observational footage, the film captures personal motivations, community contributions and the real-world impact of grassroots work.</p>
+            <p>I completed pre-production planning, location scouting and interview scheduling for this documentary. During production, I used handheld camera work, close-up portraits and natural sound recording. In post-production, I edited interview footage, structured the narrative, and applied colour grading and background music to establish a consistent tone.</p>
+        </div>
+
+
+
+        <a href="index.html#projects" class="back-link fade-in">← Back to all projects</a>
+
+        <footer>
+            <span>© 2026 Qingyu Chen</span>
+            <span>Digital Media Portfolio</span>
+        </footer>
+    </div>
+
+    <script>
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('active');
+                }
+            })
+        },{threshold:0.12});
+        fadeElements.forEach(el=>observer.observe(el));
+    </script>
+</body>
+</html>
