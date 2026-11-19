@@ -92,7 +92,7 @@
             width:100%;
             height:auto;
             display:block;
-            border-radius:2px;
+            border-radius:12px;
         }
         .image-caption{
             font-family:system-ui, sans-serif;
@@ -107,11 +107,81 @@
             gap:24px;
             margin:60px 0;
         }
+        .image-row .stacked{
+            display:flex;
+            flex-direction:column;
+            gap:24px;
+        }
         .image-row img{
             width:100%;
             height:auto;
-            border-radius:20px;
+            border-radius:12px;
         }
+
+        /* === 翻页画廊组件 新增加 === */
+        .flip-gallery-wrap{
+            margin:70px 0;
+            position:relative;
+        }
+        .flip-gallery-title{
+            font-family: system-ui, sans-serif;
+            font-size:18px;
+            color:#555;
+            margin-bottom:20px;
+        }
+        .flip-gallery{
+            position:relative;
+            width:100%;
+        }
+        .flip-slide{
+            display:none;
+        }
+        .flip-slide.active{
+            display:block;
+        }
+        .flip-slide img{
+            width:100%;
+            border-radius:12px;
+        }
+        .flip-nav{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:24px;
+            margin-top:20px;
+        }
+        .flip-btn{
+            background:transparent;
+            border:1px solid #ddd;
+            width:44px;
+            height:44px;
+            border-radius:50%;
+            font-size:20px;
+            cursor:pointer;
+            color:#333;
+            transition:0.2s;
+        }
+        .flip-btn:hover{
+            background:#f3f3f1;
+        }
+        .flip-page-indicator{
+            font-family: system-ui, sans-serif;
+            color:#777;
+            font-size:15px;
+        }
+        .live-link-wrap{
+            margin-top:24px;
+        }
+        .live-link{
+            display:inline-block;
+            font-family: system-ui, sans-serif;
+            font-size:17px;
+            color:#1a1a1a;
+            text-decoration:underline;
+            transition:0.2s;
+        }
+        .live-link:hover{color:#777;}
+        /* ===================== */
 
         .text-block{
             max-width:820px;
@@ -131,6 +201,7 @@
             font-size:17px;
             text-decoration:none;
             margin:40px 0 80px;
+            transition:0.2s;
         }
         .back-link:hover{color:#777;}
 
@@ -145,11 +216,17 @@
         }
 
         @media(max-width:900px){
+            nav{
+                display:flex;
+                flex-wrap:wrap;
+                gap:12px 20px;
+                margin-top:12px;
+            }
             .image-row{
                 grid-template-columns:1fr;
             }
             header{flex-direction:column;align-items:flex-start;gap:20px;}
-            nav a{margin-left:0;margin-right:20px;}
+            nav a{margin-left:0;margin-right:0;}
             .project-header h1{font-size:46px;}
         }
     </style>
@@ -172,12 +249,14 @@
             <div class="tags">
                 <span class="tag">Interactive Narrative</span>
                 <span class="tag">Twine SugarCube</span>
+                <span class="tag">Story Narrative</span>
+                <span class="tag">HTML/CSS</span>
             </div>
             <p class="project-desc">A nonlinear interactive guide built for new young voters and new citizens to learn the Irish voting system through a choice-based story.</p>
         </section>
 
         <div class="image-block fade-in">
-            <img src="Images/p2-home.png" alt="Interactive Voting Guide Twine">
+            <img src="Images/p2-home.png" alt="Interactive Voting Guide Twine" loading="lazy">
             <div class="image-caption">Main interface of the Twine interactive story</div>
         </div>
 
@@ -186,14 +265,40 @@
             <p>I used Twine with SugarCube macros to manage variables, branching story paths and status tracking. The narrative covers voter registration rules, PPS requirements, and what to expect inside a polling station.</p>
         </div>
 
+        <!-- ========== 新增：翻页画廊 在这里 ========== -->
+        <div class="flip-gallery-wrap fade-in">
+            <div class="flip-gallery-title">Game Screenshots & Hand-drawn Illustrations</div>
+            <div class="flip-gallery">
+                <div class="flip-slide active">
+                    <img src="Images/Game3.png" alt="Twine game screen 1" loading="lazy">
+                </div>
+                <div class="flip-slide">
+                    <img src="Images/Game2.png" alt="Twine game screen 2" loading="lazy">
+                </div>
+                <div class="flip-slide">
+                    <img src="Images/Game1.png" alt="Twine game screen 3" loading="lazy">
+                </div>
+            </div>
+            <div class="flip-nav">
+                <button class="flip-btn prev-btn">←</button>
+                <div class="flip-page-indicator"><span id="current">1</span> / <span id="total">3</span></div>
+                <button class="flip-btn next-btn">→</button>
+            </div>
+            <div class="live-link-wrap">
+                <p class="text-block" style="margin:12px 0 0;padding:0;max-width:100%;">All illustrated assets and dynamic graphics within this interactive experience are hand-drawn by myself. The visual style is designed to feel friendly and approachable for first-time voters.</p>
+                <a class="live-link" href="https://qingyu203-web.github.io/MY-TWINE-GAME/" target="_blank">Open the full interactive voting guide →</a>
+            </div>
+        </div>
+        <!-- ======================================= -->
+
         <div class="image-row fade-in">
             <div>
-                <img src="Images/Branching%20story%20flow%20diagram.png" alt="Story flow chart">
+                <img src="Images/Branching%20story%20flow%20diagram.png" alt="Story flow chart" loading="lazy">
                 <div class="image-caption">Branching story flow diagram</div>
             </div>
-            <div>
-                <img src="Images/Setup%20in%20SugarCube%202.png" alt="Macro code">
-                <img src="Images/Setup%20in%20SugarCube.png" alt="Macro code">
+            <div class="stacked">
+                <img src="Images/Setup%20in%20SugarCube%202.png" alt="Macro code" loading="lazy">
+                <img src="Images/Setup%20in%20SugarCube.png" alt="Macro code" loading="lazy">
                 <div class="image-caption">Setup in SugarCube</div>
             </div>
         </div>
@@ -215,7 +320,39 @@
                 }
             })
         },{threshold:0.12});
-        fadeElements.forEach(el=>observer.observe(el));
+
+        fadeElements.forEach(el=>{
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add('active');
+            }
+            observer.observe(el);
+        })
+
+        // ====== 翻页画廊JS ======
+        const slides = document.querySelectorAll('.flip-slide');
+        const currentNum = document.getElementById('current');
+        const totalNum = document.getElementById('total');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let current = 0;
+        const total = slides.length;
+        totalNum.textContent = total;
+
+        function updateSlide(){
+            slides.forEach(s=>s.classList.remove('active'));
+            slides[current].classList.add('active');
+            currentNum.textContent = current + 1;
+        }
+        prevBtn.onclick = ()=>{
+            current = (current - 1 + total) % total;
+            updateSlide();
+        }
+        nextBtn.onclick = ()=>{
+            current = (current + 1) % total;
+            updateSlide();
+        }
     </script>
 </body>
 </html>
+
