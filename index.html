@@ -378,4 +378,14 @@
         fadeElements.forEach(el=>observer.observe(el));
     </script>
 </body>
+
+    <script>
+// 防止手机打开自动往下跳
+window.addEventListener('load', function(){
+  setTimeout(()=>{
+    window.scrollTo({top:0, left:0, behavior:'auto'});
+  }, 50);
+});
+</script>
+
 </html>
